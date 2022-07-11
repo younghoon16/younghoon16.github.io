@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        a{
+            text-decoration:none;
+            color:red;
+            cursor: pointer;
+        }
+        body{
+            margin:0 auto;
+            background-size: cover;
+            background-image: url("image/background.jpg");
+        }
+        ul{
+            width: 552px;
+            list-style: none;
+            background: none;
+            text-align: center;
+            padding: 8px 0px;
+        }
+        .BoxHidden{
+            height: 0px;
+            overflow: hidden;
+        }
+    </style>
+    <title>鏉ㄨ檸鐨勭綉绔欓椤?/title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="Body"> 
+    <div class="yanghu">
+        <img src="image/yanghu.png" alt="">
+    </div>
+    <div class="yanghusearch">
+        <a class="se" style="display: contents;">
+            <img src="image/search.png" class="search">
+        </a>
+        <input  type="text" id="main" class="text"
+        value="杈撳叆浣犺鎼滅储鐨勫唴瀹?
+        onfocus="if(value=='杈撳叆浣犺鎼滅储鐨勫唴瀹?)value=''"
+        onblur="if(!value)value='杈撳叆浣犺鎼滅储鐨勫唴瀹?"
+        name="keyword"
+        style="border:0px;background:none;"
+        autocomplete="off"
+        >
+        <a class="bo" style="display: contents;">
+            <img src="image/arrow-down.png" class="box">
+        </a>
+        <div class="BoxHidden">
+            <ul style="left: 200px">
+                <a href="https://bilibili.com" alt="">bilibili</a>
+                <a href="https://leetcode.cn" alt="">LeetCode</a>
+                <a href="https://www.icourse163.org/" alt="">mooc</a>
+                <a href="https://patest.cn" alt="">Pat</a>
+            </ul>
+        </div>
+    </div>
+    
+    <script>
+        var box = document.getElementsByClassName("box")[0];
+        var BoxHidden = document.getElementsByClassName("BoxHidden")[0];
+        var BoxHiddenUL = document.querySelector(".BoxHidden > ul");
+        let boxIndex = 1;
+        box.onclick = () => {
+            boxIndex++;
+            if(boxIndex % 2 == 0){
+                box.style.transform = "rotate(180deg)";
+                BoxHidden.style.height = BoxHiddenUL.clientHeight*1.25 + "px";
+                BoxHidden.style.width = BoxHiddenUL.clientWidth*1.25 + "px";
+                BoxHidden.style.left = BoxHiddenUL.clientLeft*1.25 + "px";
+                return;
+            }
+            box.style.transform = "rotate(0deg)";
+            BoxHidden.style.height = "0px";
+        }
+        var text = document.querySelector(".text");
+        var sear = document.querySelector(".se");
+        function search(){
+            var textcontent = encodeURIComponent(text.value);
+            location.href = "https://baidu.com//s?wd=" + textcontent;
+        }
+        sear.addEventListener("click",search);
+        document.addEventListener("keydown",function(){
+            if(event.keyCode==108||event.keyCode==13)
+                search();
+        });
+    </script>
+</body >
+</html>
